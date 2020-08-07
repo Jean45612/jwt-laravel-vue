@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import About from '../views/About.vue'
 import Login from '../views/Autenticacion/Login.vue'
 import Registrar from '../views/Autenticacion/Registrar.vue'
 import token from "@/services/token";
@@ -29,10 +30,15 @@ const routes = [
     name: 'home',
     component: Home
   },
+  {
+    path: '/about',
+    name: 'about',
+    component: About
+  },
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
 })
 
 ///AQUI PROTEJO MIS RUTAS

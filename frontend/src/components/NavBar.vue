@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand to="/">Titulo Sistema</b-navbar-brand>
-
+  <div class="main-content__top">
+    <b-navbar type="dark" variant="info">
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown right>
             <template v-slot:button-content>
-              <em>{{userName()}}</em>
+              <span>{{userName()}}</span>
             </template>
             <b-dropdown-item href="#">Mi Perfil</b-dropdown-item>
             <b-dropdown-item @click="logout()">Cerrar sesión</b-dropdown-item>
