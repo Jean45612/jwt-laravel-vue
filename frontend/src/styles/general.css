@@ -1,3 +1,21 @@
 .content {
-  margin: 10px;
+  padding: 10px;
+}
+
+.menu-open {
+  transform: translate(292px);
+  width: calc(100% - 292px);
+}
+
+.menu-close {
+  transform: translate(50px);
+  width: calc(100% - 50px);
+}
+
+.menu {
+  padding: 10px;
+}
+
+.svg-inline--fa {
+  font-size: 25px;
 }

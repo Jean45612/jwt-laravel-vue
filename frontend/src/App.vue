@@ -1,14 +1,8 @@
 <template>
-  <div id="wrapper" :class="wrapperClass">
-    
-    <div v-if="isLoggedIn()">
-      <nav-bar-vue v-if="isLoggedIn()"></nav-bar-vue>
-      <Menu></Menu>
-      <MenuToggleBtn></MenuToggleBtn>
-      <ContentOverlay></ContentOverlay>
-    </div>
-
-    <div class="content main-content__body">
+  <div id="app">
+    <menu-vue v-if="isLoggedIn()"></menu-vue>
+    <nav-bar-vue :class="wrapperClass()" v-if="isLoggedIn()"></nav-bar-vue>
+    <div class="content" :class="wrapperClass()">
       <router-view></router-view>
     </div>
   </div>
@@ -17,45 +11,33 @@
 <script>
 import NavBarVue from "./components/NavBar.vue";
 import token from "@/services/token";
-import Menu from "./components/Menu/Menu.vue";
-import ContentOverlay from "./components/Menu/ContentOverlay.vue";
-import MenuToggleBtn from "./components/Menu/MenuToggleBtn.vue";
-
+import MenuVue from "./components/Menu.vue";
 export default {
   components: {
     NavBarVue,
-    Menu,
-    ContentOverlay,
-    MenuToggleBtn,
-  },
-  created() {
-    window.bus.$on("menu/toggle", () => {
-      window.setTimeout(() => {
-        this.isOpenMobileMenu = !this.isOpenMobileMenu;
-      }, 200);
-    });
-
-    window.bus.$on("menu/closeMobileMenu", () => {
-      this.isOpenMobileMenu = false;
-    });
+    MenuVue,
   },
   methods: {
     isLoggedIn() {
       return token.loggedIn();
     },
+    wrapperClass() {
+      return {
+        "menu-open": !this.menu_open,
+        "menu-close": this.menu_open,
+      };
+    },
   },
   data() {
     return {
-      isOpenMobileMenu: false,
+      menu_open: false,
     };
   },
-
-  computed: {
-    wrapperClass() {
-      return {
-        toggled: this.isOpenMobileMenu === true,
-      };
-    },
+  mounted() {
+    this.$root.$on("menu-collapsed", (value) => {
+      //SI EL VALOR ES TRUE SE CIERRA EL MENU, SINO SE ABRE
+      this.menu_open = value;
+    });
   },
 };
 </script>
@@ -63,14 +45,5 @@ export default {
 
 <style>
 @import "./styles/general.css";
-</style>
-
-<style lang="scss">
-//PARA EL MENU
-@import "./styles/menu/layout.scss";
-@import "./styles/menu/menu-toggle-btn.scss";
-@import "./styles/menu/menu.scss";
-@import "./styles/menu/content-overlay.scss";
-@import "./styles/menu/media-queries.scss";
 </style>
 

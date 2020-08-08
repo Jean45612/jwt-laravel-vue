@@ -1,6 +1,9 @@
 <template>
-  <div class="main-content__top">
+  <div>
     <b-navbar type="dark" variant="info">
+      <span>logo </span>
+      <b-navbar-brand to="/">Titulo Sistema</b-navbar-brand>
+
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
