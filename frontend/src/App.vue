@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" class="main">
     <menu-vue v-if="isLoggedIn()"></menu-vue>
-    <nav-bar-vue :class="wrapperClass()" v-if="isLoggedIn()"></nav-bar-vue>
+    <nav-bar-vue :class="wrapperClass()" v-if="isLoggedIn()" style="z-index:1"></nav-bar-vue>
     <div class="content" :class="wrapperClass()">
       <router-view></router-view>
     </div>

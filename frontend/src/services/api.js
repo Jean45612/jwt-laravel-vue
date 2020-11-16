@@ -29,5 +29,26 @@ export default {
     delete(url, urlParams) {
         return axios.delete(url + '/' + urlParams).then((response) => Promise.resolve(response.data))
             .catch((error) => Promise.reject(error.response));
+    },
+
+    uploadFiles(url, formData) {
+        return axios.post(url, formData).then((response) => Promise.resolve(response.data))
+            .catch((error) => Promise.reject(error.response));
+    },
+
+    downloadFile(url, body) {
+        return axios.post(url, JSON.stringify(body), {
+            responseType: 'blob',
+        }).then((response) => {
+            var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+            var fileLink = document.createElement('a');
+
+            fileLink.href = fileURL;
+            fileLink.setAttribute('download', body['archivo']);
+            document.body.appendChild(fileLink);
+
+            fileLink.click();
+        }).catch((error) => Promise.reject(error.response));
     }
+
 }

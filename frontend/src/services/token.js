@@ -20,7 +20,8 @@ export default {
 
         var iss = {
             login: Vue.prototype.$apiURL + 'login', //EN ARCHIVOS .JS SE ACCEDE A LAS VARIABLES GLOBALES DE ESTA FORMA
-            register: Vue.prototype.$apiURL + 'register'
+            register: Vue.prototype.$apiURL + 'register',
+            refresh: Vue.prototype.$apiURL + 'refresh'
         };
 
         if (token) {

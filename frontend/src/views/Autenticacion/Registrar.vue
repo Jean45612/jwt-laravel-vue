@@ -1,9 +1,13 @@
 <template>
   <div class="container">
     <h3>Registrar</h3>
-    <b-form @submit="guardar" autocomplete="off">
+    <b-form autocomplete="off">
       <b-form-group label="Usuario">
-        <b-form-input v-model="form.email" type="email" placeholder="usuario@example.com"></b-form-input>
+        <b-form-input
+          v-model="form.email"
+          type="email"
+          placeholder="usuario@example.com"
+        ></b-form-input>
       </b-form-group>
 
       <b-form-group label="Contraseña">
@@ -11,12 +15,15 @@
       </b-form-group>
 
       <b-form-group label="Confirmar contraseña">
-        <b-form-input v-model="form.password_confirmation" type="password"></b-form-input>
+        <b-form-input
+          v-model="form.password_confirmation"
+          type="password"
+        ></b-form-input>
       </b-form-group>
 
       <error-vue :errors="errors"></error-vue>
 
-      <b-button type="submit" variant="primary">Registrarse</b-button>
+      <b-button variant="primary" @click="guardar()">Registrarse</b-button>
     </b-form>
   </div>
 </template>
@@ -24,6 +31,7 @@
 <script>
 import api from "@/services/api";
 import ErrorVue from "../../components/Error.vue";
+import swal from "@/services/swal";
 
 export default {
   data() {
@@ -45,7 +53,7 @@ export default {
     guardar() {
       api.post("register", this.form).then(
         (data) => {
-          this.$swal("Registro exitoso", "", "success");
+          swal.alerta("Registro exitoso", "success");
           this.$router.push({ name: "login" });
         },
         (error) => {

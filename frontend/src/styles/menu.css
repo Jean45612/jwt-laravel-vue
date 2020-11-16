@@ -1,12 +1,16 @@
 .v-sidebar-menu {
 }
 .v-sidebar-menu.vsm_expanded {
-  max-width: 292px !important;
+  max-width: 250px !important;
 }
 
 .v-sidebar-menu .vsm--icon {
   background-color: transparent !important;
   height: 25px !important;
+}
+
+.v-sidebar-menu .svg-inline--fa {
+  font-size: 25px;
 }
 
 .v-sidebar-menu.vsm_collapsed {
